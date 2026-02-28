@@ -13,18 +13,19 @@ class JewelryItemController extends Controller
 
     public function index()
     {
-        $items = $this->items;          
-        return view('items', compact('items')); 
+        return view('items.index', [
+            'items' => $this->items
+        ]);
     }
 
     public function show($id)
     {
-        $name = $this->items[$id] ?? null;
-
-        if (!$name) {
+        if (!isset($this->items[$id])) {
             return "Виріб не знайдено";
         }
 
-        return view('item', compact('name'));  
+        return view('items.show', [
+            'name' => $this->items[$id]
+        ]);
     }
 }

@@ -6,11 +6,11 @@ class MainController extends Controller
 {
     public function index()
     {
-        return "Ласкаво просимо на сайт ювелірної майстерні!";
+        return view('main');
     }
 
     public function about()
     {
-        return "Цей проєкт призначений для управління замовленнями, клієнтами та ювелірними виробами.";
+        return view('about');
     }
 }
