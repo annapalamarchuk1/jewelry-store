@@ -1,41 +1,46 @@
 @extends('layouts.app')
 
-@section('title', 'Каталог')
+@section('title', 'Адмін — прикраси')
 
 @section('content')
-<h1 class="mb-4">Каталог прикрас</h1>
+<h1 class="mb-4">Список прикрас (адмін)</h1>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Назва</th>
+            <th>Ціна</th>
+            <th>Фото</th>
+            <th>Дії</th>
+        </tr>
+    </thead>
 
-    <div class="col">
-        <x-card 
-            title="Золота каблучка"
-            description="Вишукана каблучка із золота 585 проби."
-            price="3500"
-            image="/images/ring.jpg"
-            link="/items/1"
-        />
-    </div>
+    <tbody>
+        @foreach($items as $item)
+        <tr>
+            <td>{{ $item->id }}</td>
+            <td>{{ $item->title }}</td>
+            <td>{{ $item->price }} грн</td>
+            <td>
+                <img src="{{ $item->image }}" width="80">
+            </td>
+            <td>
+              <a href="{{ route('admin.items.show', $item->id) }}" class="btn btn-info">
+    Переглянути
+</a>
 
-    <div class="col">
-        <x-card 
-            title="Срібний ланцюжок"
-            description="Класичний срібний ланцюжок."
-            price="1800"
-            image="/images/chain.jpg"
-            link="/items/2"
-        />
-    </div>
+                <form action="{{ route('admin.items.destroy', ['item' => $item->id]) }}" method="POST" style="display:inline-block;">
+                    @csrf
+                    @method('DELETE')
 
-    <div class="col">
-        <x-card 
-            title="Підвіска з камінням"
-            description="Елегантна підвіска з декоративним камінням."
-            price="2200"
-            image="/images/pendant.jpg"
-            link="/items/3"
-        />
-    </div>
-
-</div>
+                    <button class="btn btn-danger btn-sm">
+                        Видалити
+                    </button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 @endsection

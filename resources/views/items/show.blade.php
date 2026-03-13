@@ -1,8 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Виріб')
-
 @section('content')
-<h1>{{ $name }}</h1>
-<a href="/items" class="btn btn-secondary">← Назад</a>
+
+<h2>{{ $item->title }}</h2> 
+
+<p>Ціна: {{ $item->price }} грн</p>
+
+@if(!empty($item->description))
+    <p>{{ $item->description }}</p>
+@endif
+
+<img src="{{ asset($item->image) }}" width="300">
+
+<a href="{{ route('items.index') }}" class="btn btn-secondary">Назад</a>
+
 @endsection

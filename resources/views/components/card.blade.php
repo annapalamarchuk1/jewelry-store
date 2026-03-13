@@ -1,7 +1,7 @@
 @props(['title', 'description', 'price', 'image', 'link'])
 
 <div class="card h-100">
-    <img src="{{ $image }}" alt="{{ $title }}" class="card-img-top card-image">
+   <img src="{{ $image }}" class="card-img-top card-image" alt="{{ $title }}">
     <div class="card-body">
         <h5 class="card-title">{{ $title }}</h5>
         <p class="card-text">{{ $description }}</p>
