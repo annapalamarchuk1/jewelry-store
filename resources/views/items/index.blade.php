@@ -3,6 +3,7 @@
 @section('title', 'Адмін — прикраси')
 
 @section('content')
+
 <h1 class="mb-4">Список прикрас (адмін)</h1>
 
 <table class="table table-bordered">
@@ -26,9 +27,9 @@
                 <img src="{{ $item->image }}" width="80">
             </td>
             <td>
-              <a href="{{ route('admin.items.show', $item->id) }}" class="btn btn-info">
-    Переглянути
-</a>
+                <a href="{{ route('admin.items.show', ['item' => $item->id]) }}" class="btn btn-info">
+                    Переглянути
+                </a>
 
                 <form action="{{ route('admin.items.destroy', ['item' => $item->id]) }}" method="POST" style="display:inline-block;">
                     @csrf
@@ -43,4 +44,5 @@
         @endforeach
     </tbody>
 </table>
+
 @endsection

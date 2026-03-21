@@ -2,16 +2,14 @@
 
 @section('content')
 
-<h2>{{ $item->title }}</h2> 
+<h1>{{ $item->title }}</h1>
+
+<img src="{{ $item->image }}" style="max-width:200px;">
+
+<p>{{ $item->description }}</p>
 
 <p>Ціна: {{ $item->price }} грн</p>
 
-@if(!empty($item->description))
-    <p>{{ $item->description }}</p>
-@endif
-
-<img src="{{ asset($item->image) }}" width="300">
-
-<a href="{{ route('items.index') }}" class="btn btn-secondary">Назад</a>
+<a href="{{ route('items.index') }}">Назад до каталогу</a>
 
 @endsection

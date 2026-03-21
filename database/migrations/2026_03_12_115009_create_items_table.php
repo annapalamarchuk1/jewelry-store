@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-   Schema::create('items', function (Blueprint $table) {
-    $table->id();
+ Schema::create('items', function (Blueprint $table) {
+    $table->id(); // <-- це автоінкрементний id
     $table->string('title');
+    $table->decimal('price', 10, 2);
     $table->text('description')->nullable();
-    $table->integer('price')->default(0);
     $table->string('image')->nullable();
     $table->timestamps();
 });
