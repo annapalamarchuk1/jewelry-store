@@ -1,50 +1,39 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">
-    <title>@yield('title')</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-   <style>
-.card-image{
-    width:100%;
-    height:300px;
-    object-fit:cover;
-}
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-.detail-image{
-    width:100%;
-    max-width:500px;  
-    height:auto;
-    display:block;
-    margin:auto;   
-}
-</style>
-
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="/">Jewelry Store</a>
+<body class="font-sans antialiased">
+<div class="min-h-screen bg-gray-100">
 
-        <div>
-            <a class="nav-link d-inline text-white" href="/">Головна</a>
-            <a class="nav-link d-inline text-white" href="/items">Каталог</a>
-            <a class="nav-link d-inline text-white" href="/about">Про проєкт</a>
-        </div>
-    </div>
-</nav>
+    @include('layouts.navigation')
 
-<div class="container mt-4">
-    @yield('content')
+    <!-- Page Heading -->
+    @isset($header)
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                {{ $header }}
+            </div>
+        </header>
+    @endisset
+
+    <!-- Page Content -->
+    <main class="p-6">
+        @yield('content')
+    </main>
+
 </div>
-
-<footer class="bg-dark text-white text-center p-3 mt-4">
-    © 2026 Ювелірна майстерня
-</footer>
-
 </body>
 </html>

@@ -1,66 +1,73 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container" style="max-width: 600px; margin-top: 30px;">
-    <h1 class="mb-4">Додати нову прикрасу</h1>
+    <h1 style="margin-bottom: 20px;">Додати нову прикрасу</h1>
 
     @if(session('success'))
-        <div style="color:green; font-size: 1rem; margin-bottom: 15px;">
+        <div style="color:green; margin-bottom: 15px;">
             {{ session('success') }}
         </div>
     @endif
 
-    <form action="{{ route('admin.items.store') }}" method="POST" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ddd;">
+    <form action="{{ route('admin.items.store') }}" method="POST">
         @csrf
 
-        <div class="mb-3">
-            <label class="form-label" style="font-weight: bold;">Назва прикраси</label>
-            <input type="text" name="title" 
-                   class="form-control @error('title') is-invalid @enderror" 
-                   value="{{ old('title') }}" 
-                   placeholder="Наприклад: Золота каблучка">
-            
+        <!-- Назва -->
+        <div style="margin-bottom: 15px;">
+            <label>Назва прикраси</label>
+            <input type="text" name="title"
+                   value="{{ old('title') }}"
+                   style="width:100%; padding:8px;">
+
             @error('title')
-                <div style="color:red; font-size: 0.9rem; margin-top: 5px;">{{ $message }}</div>
+                <div style="color:red">{{ $message }}</div>
             @enderror
         </div>
 
-        <div class="mb-3">
-            <label class="form-label" style="font-weight: bold;">Ціна (грн)</label>
-            <input type="text" name="price" 
-                   class="form-control @error('price') is-invalid @enderror" 
-                   value="{{ old('price') }}" 
-                   placeholder="0.00">
-            
+        <!-- Ціна -->
+        <div style="margin-bottom: 15px;">
+            <label>Ціна (грн)</label>
+            <input type="number" step="0.01" name="price"
+                   value="{{ old('price') }}"
+                   style="width:100%; padding:8px;">
+
             @error('price')
-                <div style="color:red; font-size: 0.9rem; margin-top: 5px;">{{ $message }}</div>
+                <div style="color:red">{{ $message }}</div>
             @enderror
         </div>
 
-        <div class="mb-3">
-            <label class="form-label" style="font-weight: bold;">Опис</label>
-            <textarea name="description" rows="4" 
-                      class="form-control @error('description') is-invalid @enderror" 
-                      placeholder="Опишіть характеристики виробу...">{{ old('description') }}</textarea>
-            
+        <!-- Опис -->
+        <div style="margin-bottom: 15px;">
+            <label>Опис</label>
+            <textarea name="description" style="width:100%; padding:8px;">{{ old('description') }}</textarea>
+
             @error('description')
-                <div style="color:red; font-size: 0.9rem; margin-top: 5px;">{{ $message }}</div>
+                <div style="color:red">{{ $message }}</div>
             @enderror
         </div>
 
-        <div class="mb-3">
-            <label class="form-label" style="font-weight: bold;">Шлях до зображення (необов'язково)</label>
-            <input type="text" name="image" class="form-control" value="{{ old('image') }}" placeholder="images/ring.jpg">
+        <!-- Фото -->
+        <div style="margin-bottom: 15px;">
+            <label>Зображення (URL)</label>
+            <input type="text" name="image"
+                   value="{{ old('image') }}"
+                   style="width:100%; padding:8px;">
         </div>
 
-        <div class="mt-4">
-            <button type="submit" class="btn btn-primary" style="background-color: #00bcd4; border: none; padding: 10px 20px;">
-                Зберегти прикрасу
-            </button>
-            <a href="{{ route('admin.items.index') }}" class="btn btn-secondary" style="margin-left: 10px;">
-                Назад до списку
-            </a>
-        </div>
+        <!-- Кнопки -->
+        <button type="submit"
+                style="background:#00bcd4; color:white; padding:10px 15px; border:none;">
+            Зберегти
+        </button>
+
+        <a href="{{ route('admin.items.index') }}"
+           style="margin-left:10px;">
+            Назад
+        </a>
+
     </form>
 </div>
+
 @endsection
