@@ -46,4 +46,13 @@ class ItemController extends Controller
         $item->delete();
         return response()->json(['message' => 'Видалено успішно'], 200);
     }
+    public function categories()
+{
+    $categories = Item::select('category')
+        ->distinct()
+        ->whereNotNull('category')
+        ->pluck('category');
+        
+    return response()->json($categories);
+}
 }

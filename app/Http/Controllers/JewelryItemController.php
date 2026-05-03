@@ -28,13 +28,6 @@ class JewelryItemController extends Controller
             'price' => 2200,
             'image' => '/images/bracelet.jpg'
         ],
-        4 => [
-            'id' => 4,
-            'title' => 'Кулон ручної роботи',
-            'description' => 'Елегантний кулон ручної роботи.',
-            'price' => 2500,
-            'image' => '/images/pendant.jpg'
-        ],
     ];
 
     public function index()
