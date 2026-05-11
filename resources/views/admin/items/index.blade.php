@@ -51,10 +51,16 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium border-b">
                                     <div class="flex justify-center items-center space-x-3">
                                         <a href="{{ route('admin.items.show', $item->id) }}" class="text-blue-600 hover:text-blue-900 font-semibold underline underline-offset-4">
-                                            Переглянути
+                                           Переглянути
                                         </a>
 
-                                        <span class="text-gray-300">|</span>
+                                          <span class="text-gray-300">|</span>
+
+                                        <a href="{{ route('admin.items.edit', $item->id) }}" class="text-yellow-600 hover:text-yellow-900 font-semibold underline underline-offset-4">
+                                           Редагувати
+                                        </a>
+
+                                           <span class="text-gray-300">|</span>
 
                                         <form action="{{ route('admin.items.destroy', $item->id) }}" method="POST" class="inline-block">
                                             @csrf
